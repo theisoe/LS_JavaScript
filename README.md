@@ -1,0 +1,1 @@
+This repository is for JS101 and its related exercises. 
