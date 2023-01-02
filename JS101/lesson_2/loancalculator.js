@@ -1,7 +1,7 @@
 /*START
 GET the loan amount
 Validate the number
-IF the user input is not a number or less than zero, ask again
+IF the user input is not a number, less than zero or blank, ask again
 ELSE proceed
 SET loan amount
 GET the annual percentage rate in %
