@@ -9,36 +9,39 @@
  const rlsync = require ("readline-sync");
  const VALID_CHOICES = ["rock", "paper", "scissors"];
 
- function prompt(message) {
+function displayWinner(choice, computerChoice) {
+  prompt(`You chose ${choice} and computer chose ${computerChoice}.`)
+
+  if ((choice === "rock" && computerChoice === "scissors") || 
+      (choice === "paper" && computerChoice === "rock") ||
+      (choice === "scissors" && computerChoice === "paper")) {
+    prompt ("Player wins!");
+  } else if ((computerChoice === "rock" && choice === "scissors") || 
+      (computerChoice === "paper" && choice === "rock") ||
+      (computerChoice === "scissors" && choice === "paper")) {
+    prompt ("Computer wins!");
+  } else if (choice === computerChoice) { 
+    prompt ("It's a tie! ");
+  } 
+}
+
+function prompt(message) {
   console.log(`=> ${message}`);
  }
 
- 
 while (true) {
-prompt(`Choose one: ${VALID_CHOICES.join(', ')}`);
-let choice = rlsync.question();
+  prompt(`Choose one: ${VALID_CHOICES.join(', ')}`);
+  let choice = rlsync.question();
+  
+  while (!VALID_CHOICES.includes(choice)) {
+    prompt("Please choose a valid option! ");
+    choice = rlsync.question();
+  }
+  
+  let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
+  let computerChoice = VALID_CHOICES[randomIndex];  
 
-while (!VALID_CHOICES.includes(choice)) {
-  prompt("Please choose a valid option! ");
-  choice = rlsync.question();
-}
-
-let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
-let computerChoice = VALID_CHOICES[randomIndex];
-
-prompt(`You chose ${choice} and computer chose ${computerChoice}.`)
-
-if ((choice === "rock" && computerChoice === "scissors") || 
-    (choice === "paper" && computerChoice === "rock") ||
-    (choice === "scissors" && computerChoice === "paper")) {
-  prompt ("Player wins!");
-} else if ((computerChoice === "rock" && choice === "scissors") || 
-    (computerChoice === "paper" && choice === "rock") ||
-    (computerChoice === "scissors" && choice === "paper")) {
-  prompt ("Computer wins!");
-} else if (choice === computerChoice) { 
-  prompt ("It's a tie! ");
-} 
+  displayWinner(choice, computerChoice);
 
 prompt("Would you like to play again? (y/n)");
 let answer = rlsync.question().toLowerCase();
