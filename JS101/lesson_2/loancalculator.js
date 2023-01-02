@@ -36,16 +36,14 @@ while (invalidNumber(loanAmount) || loanAmount <= 0) {
 
 prompt("Enter the annual percentage rate in %: ");
 let annualPercentRate = rlsync.question();
-while ((invalidNumber (annualPercentRate)) || (annualPercentRate < 0)
+while ((invalidNumber (annualPercentRate)) || (annualPercentRate <= 0)
       || (annualPercentRate >= 100)) {
   prompt("Please enter a valid percentage: ");
   annualPercentRate = rlsync.question();
 }
 annualPercentRate /= 100;
-console.log(annualPercentRate);
 
 let monthlyInterestRate = (annualPercentRate / 12);
-console.log(`Your monthly interest rate is ${monthlyInterestRate}`);
 
 prompt("Enter the loan duaration in months: ");
 let monthlyDuration = rlsync.question();
