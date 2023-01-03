@@ -26,8 +26,8 @@ function prompt(message) {
 prompt("Enter the loan amount in $: ");
 let loanAmount = rlsync.question();
 
-function invalidNumber(loanAmount) {
-  return loanAmount.trimStart() === "" || Number.isNaN(Number(loanAmount));
+function invalidNumber(input) {
+  return input.trimStart() === "" || Number.isNaN(Number(input));
 }
 while (invalidNumber(loanAmount) || loanAmount <= 0) {
   prompt("Please enter a valid amount: ");
@@ -36,6 +36,7 @@ while (invalidNumber(loanAmount) || loanAmount <= 0) {
 
 prompt("Enter the annual percentage rate in %: ");
 let annualPercentRate = rlsync.question();
+
 while ((invalidNumber (annualPercentRate)) || (annualPercentRate <= 0)
       || (annualPercentRate >= 100)) {
   prompt("Please enter a valid percentage: ");
@@ -47,6 +48,7 @@ let monthlyInterestRate = (annualPercentRate / 12);
 
 prompt("Enter the loan duaration in months: ");
 let monthlyDuration = rlsync.question();
+
 while (invalidNumber(monthlyDuration) || monthlyDuration <= 0) {
   prompt("Please enter a valid duration.");
   monthlyDuration = rlsync.question();
