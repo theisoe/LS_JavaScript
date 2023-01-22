@@ -9,7 +9,7 @@ const WINNING_COMBOS = {
   spock:    ['rock',     'scissors'],
 };
 
-function shortedChoice(choice) { 
+function shortedChoice(choice) {
   if (choice === "r" || choice === "rock") {
     return "rock";
   } else if (choice === "p" || choice === "paper") {
@@ -18,7 +18,7 @@ function shortedChoice(choice) {
     return "lizard";
   } else if (choice === "s") {
     prompt("Type 'sc' for scissor and Type 'sp' for spock");
-  } if (choice === "sc") {
+  } else if (choice === "sc") {
     return "scissors";
   } else if (choice === "sp") return "spock";
 }
@@ -112,4 +112,5 @@ while (true) {
     break;
   }
 }
+
 
