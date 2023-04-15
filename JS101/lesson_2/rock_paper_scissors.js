@@ -1,6 +1,6 @@
 //player a is rock, player b is scissors; player a wins
 //player a is paper, player b is rock, player a wins
-//player a is scissors, player b is paper, play a wins
+//player a is scissors, player b is paper, player a wins
 //both players chose the same, it's a tie 
 // User make a choice : readline-sync
 //The computer make a choice: random choice
@@ -55,5 +55,5 @@ if (answer[0] !== 'y') {
   prompt ("See you again!")
   break;
 }
-
 }
+

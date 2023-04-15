@@ -17,33 +17,50 @@ function shortedChoice(choice) {
   } else if (choice === "l" || choice === "lizard") {
     return "lizard";
   } else if (choice === "s") {
-    prompt("Type 'sc' for scissor and Type 'sp' for spock");
+    return prompt("Type 'sc' for scissor and Type 'sp' for spock");
   } else if (choice === "sc") {
     return "scissors";
-  } else if (choice === "sp") return "spock";
+  } else if (choice === "sp") {
+    return "spock";
+  } else {
+    return prompt("Invalid choice.");
+  }
 }
 
 function prompt(message) {
   console.log(`=> ${message}`);
 }
 
-let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
-let computerChoice = VALID_CHOICES[randomIndex];
+function spacing() {
+  console.log(" ");
+}
+
+function welcomeMessage() {
+  console.log(`Welcome to Rock, Paper, Scissors, Lizard, Spock! 
+  The rules of the game are:
+  Scissors decapitate Scissors cuts paper,
+  paper covers rock, rock crushes lizard,
+  lizard poisons Spock, Spock smashes scissors,
+  scissors decapitates lizard, lizard eats paper,
+  paper disproves Spock, Spock vaporizes rock, 
+  and as it always has, rock crushes scissors.`);
+}
 
 function displayWinner(choice, computerChoice) {
   prompt(`You chose ${choice} and computer chose ${computerChoice}.`);
   if (playerWins(choice, computerChoice)) {
-    return prompt('You win!');
+    prompt('You win!');
   } else if (choice === computerChoice) {
-    return prompt("It's a tie!");
+    prompt("It's a tie!");
   } else {
-    return prompt("Computer wins!");
+    prompt("Computer wins!");
   }
 }
 
 function playerWins(choice, computerChoice) {
   return WINNING_COMBOS[choice].includes(computerChoice);
 }
+
 let playerScore = 0;
 let computerScore = 0;
 
@@ -65,19 +82,24 @@ function grandWinner() {
   }
 }
 
-while (true) {
-  console.clear();
-  console.log (`Welcome to Rock, Paper, Scissors, Lizard, Spock! 
-  The rules of the game are:
-  Scissors decapitate Scissors cuts paper,
-  paper covers rock, rock crushes lizard,
-  lizard poisons Spock, Spock smashes scissors,
-  scissors decapitates lizard, lizard eats paper,
-  paper disproves Spock, Spock vaporizes rock, 
-  and as it always has, rock crushes scissors.`);
+function continueGame() {
+  prompt ("Do you want to continue? y/n");
+  let answer = rlsync.question().toLowerCase();
+  return answer;
+}
 
-  while (playerScore < 3 && computerScore < 3) {
-    console.log(" "); //For spacing
+while (true) {
+  let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
+  let computerChoice = VALID_CHOICES[randomIndex];
+
+  console.clear();
+  welcomeMessage();
+
+  console.log(WINNING_COMBOS["rock"]);
+
+  const WINNING_ROUND = 3;
+  while (playerScore < WINNING_ROUND && computerScore < WINNING_ROUND) {
+    spacing( );
     prompt(`Choose one: ${VALID_CHOICES}`);
     let choice = rlsync.question();
 
@@ -87,7 +109,7 @@ while (true) {
     }
 
     displayWinner(shortedChoice(choice), computerChoice);
-    console.log(''); //Spacing
+    spacing( );
     score(choice, computerChoice);
 
     prompt(`Player wins ${playerScore} matches & Computer wins ${computerScore} matches.`);
@@ -97,17 +119,15 @@ while (true) {
   playerScore = 0;
   computerScore = 0;
 
-  console.log(''); //Spacing
-
-  prompt ("Do you want to continue? y/n");
-  let answer = rlsync.question().toLowerCase();
-
-  while (!(answer[0] === 'y' || answer[0] === 'n')) {
+  spacing();
+  
+  let answer = continueGame();
+  while (!(answer === 'y' || answer === 'n')) {
     prompt("Please enter y/n! ");
     answer = rlsync.question().toLowerCase();
   }
 
-  if (answer[0] === "n") {
+  if (answer === "n") {
     prompt("See you again!");
     break;
   }
