@@ -29,7 +29,7 @@ prompt("What is the second number?");
 let number2 = readline.question();
 
 while (invalidNumber(number2)) {
-  prompt(MESSAGE['validName']);
+  prompt(MESSAGE['valid']);
   number2 = readline.question();
 }
 
