@@ -7,3 +7,4 @@ if (randomAge >= 20 && randomAge <= 120) {
 }
 
 //Solution uses function
+
